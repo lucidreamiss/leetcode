@@ -45,32 +45,53 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+//    题解1
+//    public boolean increasingTriplet(int[] nums) {
+//        if (nums.length < 3) {
+//            return false;
+//        }
+//        int[] mins = new int[nums.length];
+//        int min = Integer.MAX_VALUE;
+//        for (int i = 0; i < nums.length; i++) {
+//            if (min > nums[i]) {
+//                min = nums[i];
+//            }
+//            mins[i] = min;
+//        }
+//        int[] maxs = new int[nums.length];
+//        int max = Integer.MIN_VALUE;
+//        for (int i = nums.length - 1; i >= 0; i--) {
+//            if (max < nums[i]) {
+//                max = nums[i];
+//            }
+//            maxs[i] = max;
+//        }
+//        for (int i = 0; i < nums.length; i++) {
+//            if (nums[i] > mins[i] && nums[i] < maxs[i]) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+//    题解2
     public boolean increasingTriplet(int[] nums) {
         if (nums.length < 3) {
             return false;
         }
-        int[] mins = new int[nums.length];
-        int min = Integer.MAX_VALUE;
-        for (int i = 0; i < nums.length; i++) {
-            if (min > nums[i]) {
-                min = nums[i];
-            }
-            mins[i] = min;
-        }
-        int[] maxs = new int[nums.length];
-        int max = Integer.MIN_VALUE;
-        for (int i = nums.length - 1; i >= 0; i--) {
-            if (max < nums[i]) {
-                max = nums[i];
-            }
-            maxs[i] = max;
-        }
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] > mins[i] && nums[i] < maxs[i]) {
+        int first = nums[0];
+        int second = Integer.MAX_VALUE;
+        for (int num : nums) {
+            if (second < num) {
                 return true;
+            } else if (first >= num) {
+                first = num;
+            } else {
+                second = num;
             }
         }
         return false;
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
